@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Artigos e reflexões de Diego Santana sobre Psicologia, Teologia e Ciências.">
+<title>Blog Diego Santana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: coluna editorial estreita, hero tipográfico, divisores em gradiente entre seções */
+:root{
+  --bg:#f6f3ee; --surface:#fffdf9; --fg:#2a2622; --muted:#6f665c; --line:#e2dbd0;
+  --accent:#8a5a2b;
+  --c-psi:#4f5b66; --c-psa:#9a5f22; --c-teo:#3f4a8a; --c-cie:#2f6b55;
+  --serif:'Merriweather',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1b1916; --surface:#24211d; --fg:#ece6dc; --muted:#a69b8d; --line:#3a352e;
+  --accent:#d39a5e; --c-psi:#9fb0bf; --c-psa:#e0a463; --c-teo:#9ea8e8; --c-cie:#7cc4a6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1b1916; --surface:#24211d; --fg:#ece6dc; --muted:#a69b8d; --line:#3a352e;
+  --accent:#d39a5e; --c-psi:#9fb0bf; --c-psa:#e0a463; --c-teo:#9ea8e8; --c-cie:#7cc4a6; color-scheme:dark}
+
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding-inline:20px}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);text-wrap:balance;margin:0}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* nav */
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+header.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{font-family:var(--serif);font-weight:700;font-size:1.1rem;text-decoration:none}
+.brand span{color:var(--accent)}
+nav.links{display:flex;gap:20px;font-size:.9rem;flex-wrap:wrap}
+nav.links a{text-decoration:none;color:var(--muted)}
+nav.links a:hover,nav.links a:focus-visible{color:var(--fg)}
+
+/* hero */
+.hero{padding-block:64px 40px}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:300;line-height:1.2;max-width:18ch;margin-top:12px}
+.hero h1 em{font-weight:400;color:var(--accent)}
+.hero p{color:var(--muted);max-width:56ch;margin:20px 0 0;font-size:1.05rem}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{font:600 .9rem var(--sans);padding:12px 20px;border-radius:999px;border:1px solid var(--fg);background:var(--fg);color:var(--bg);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--fg)}
+.btn:focus-visible,input:focus-visible,.chip:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.divider{height:2px;border:0;margin:0;background:linear-gradient(90deg,var(--c-psi),var(--c-psa),var(--c-teo),var(--c-cie));opacity:.55}
+
+section{padding-block:56px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{font-size:1.6rem;font-weight:400}
+
+/* destaques */
+.featured{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+@media (max-width:720px){.featured{grid-template-columns:1fr}}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.feat.big h3{font-size:1.6rem;font-weight:400;line-height:1.3}
+.feat h3{font-size:1.15rem;font-weight:400;line-height:1.35}
+.feat p{color:var(--muted);margin:0}
+.side{display:grid;gap:24px}
+.cat{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.meta{font-size:.8rem;color:var(--muted);margin-top:auto}
+
+/* lista */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:500 .85rem var(--sans);padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--fg);color:var(--fg);background:var(--surface)}
+.list{display:grid;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:130px 1fr auto;gap:20px;padding-block:22px;border-bottom:1px solid var(--line);align-items:baseline}
+.row > *{min-width:0}
+.row h3{font-size:1.1rem;font-weight:400;line-height:1.4}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:.75rem;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--bg)}
+.row p{margin:6px 0 0;color:var(--muted);font-size:.93rem}
+.row .meta{white-space:nowrap;font-variant-numeric:tabular-nums}
+@media (max-width:620px){.row{grid-template-columns:1fr;gap:6px}}
+
+/* sobre */
+.about{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start}
+@media (max-width:620px){.about{grid-template-columns:1fr;gap:20px}}
+.portrait{aspect-ratio:4/5;max-width:200px;border-radius:6px;background:linear-gradient(160deg,var(--c-psa),var(--c-teo));display:grid;place-items:center;color:var(--bg);font:300 3rem var(--serif)}
+.about p{max-width:60ch;margin:0 0 14px}
+.about .social{display:flex;gap:18px;font-size:.9rem;color:var(--muted)}
+
+/* newsletter */
+.news{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:40px;display:grid;gap:16px}
+.news h2{font-size:1.7rem;font-weight:300}
+.news p{margin:0;color:var(--muted);max-width:52ch}
+form.sub{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+form.sub input{flex:1 1 240px;min-width:0;font:1rem var(--sans);padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.note{font-size:.85rem;color:var(--accent)}
+
+footer{border-top:1px solid var(--line);padding-block:28px;font-size:.85rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (prefers-reduced-motion:no-preference){.btn,.chip{transition:background .2s,color .2s,border-color .2s}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio">Diego <span>Santana</span></a>
+    <nav class="links" aria-label="Principal">
+      <a href="#artigos">Artigos</a><a href="#sobre">Sobre</a><a href="#newsletter">Newsletter</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero" id="inicio">
+    <div class="eyebrow">Psicologia · Teologia · Ciências</div>
+    <h1>Estudar em público, <em>escutar</em> com cuidado.</h1>
+    <p>Artigos e reflexões de quem está no caminho da Psicologia: leituras, resumos e perguntas que ficam depois de fechar o livro.</p>
+    <div class="actions">
+      <a class="btn" href="#newsletter">Receber a newsletter</a>
+      <a class="btn ghost" href="#artigos">Ler os artigos</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <section class="wrap" aria-labelledby="dest">
+    <div class="sec-head"><h2 id="dest">Em destaque</h2><span class="eyebrow">Textos de exemplo</span></div>
+    <div class="featured">
+      <article class="feat big">
+        <span class="cat" style="color:var(--c-psi)">Psicologia</span>
+        <h3>Escutar-se é desconhecer-se: notas sobre O Palhaço e o Psicanalista</h3>
+        <p>O que muda quando a escuta de si deixa de ser confirmação e passa a ser estranhamento.</p>
+        <div class="tags"><span class="tag">Psicanálise</span><span class="tag">Escuta</span></div>
+        <span class="meta">13 out 2026 · 6 min</span>
+      </article>
+      <div class="side">
+        <article class="feat">
+          <span class="cat" style="color:var(--c-psi)">Psicologia</span>
+          <h3>A pirâmide de Maslow e o que ela não diz</h3>
+          <span class="meta">8 out 2026 · 5 min</span>
+        </article>
+        <article class="feat">
+          <span class="cat" style="color:var(--c-teo)">Teologia</span>
+          <h3>Fé e inconsciente: um diálogo possível?</h3>
+          <span class="meta">29 set 2026 · 8 min</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="wrap" id="artigos" aria-labelledby="art">
+    <div class="sec-head">
+      <h2 id="art">Todos os artigos</h2>
+      <div class="chips" role="group" aria-label="Filtrar por categoria" id="chips"></div>
+    </div>
+    <div class="list" id="list"></div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="wrap" id="sobre" aria-labelledby="sob">
+    <div class="about">
+      <div class="portrait" aria-hidden="true">DS</div>
+      <div>
+        <div class="eyebrow">Sobre</div>
+        <h2 id="sob" style="font-size:1.6rem;font-weight:400;margin:8px 0 16px">Olá, eu sou o Diego.</h2>
+        <p>Estudante de Psicologia em São Paulo, músico há quase dez anos e leitor curioso de psicanálise e teologia.</p>
+        <p>Este espaço reúne o que eu estudo: resumos das aulas, trechos dos livros que estou lendo e as conexões que aparecem no caminho.</p>
+        <div class="social"><span>Instagram: @santanadi_psi</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="newsletter" aria-labelledby="nl">
+    <div class="news">
+      <div class="eyebrow">Newsletter</div>
+      <h2 id="nl">Uma carta de estudos, a cada quinze dias.</h2>
+      <p>Um texto por edição sobre o que li e estudei, com as referências para você ir mais fundo.</p>
+      <form class="sub" id="sub" novalidate>
+        <label for="email" class="eyebrow" style="position:absolute;left:-9999px">E-mail</label>
+        <input id="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
+        <button class="btn" type="submit">Inscrever</button>
+      </form>
+      <div class="note" id="note" hidden></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Diego Santana. Todos os direitos reservados.</span><span>Privacidade · Contato</span></div>
+</footer>
+
+<script>
+const cats={psicologia:['Psicologia','--c-psi'],teologia:['Teologia','--c-teo'],ciencias:['Ciências','--c-cie']};
+const posts=[
+ {c:'psicologia',g:['Psicanálise','Escuta'],t:'Escutar-se é desconhecer-se: notas sobre O Palhaço e o Psicanalista',e:'Primeiras impressões do livro de Christian Dunker e Cláudio Thebas.',d:'13 out 2026'},
+ {c:'psicologia',g:['Humanismo','Motivação'],t:'A pirâmide de Maslow e o que ela não diz',e:'Necessidades humanas, críticas à hierarquia e usos na prática.',d:'8 out 2026'},
+ {c:'teologia',g:['Psicanálise'],t:'Fé e inconsciente: um diálogo possível?',e:'Como psicanálise e teologia podem conversar sem reduzir uma à outra.',d:'29 set 2026'},
+ {c:'psicologia',g:['Psicanálise','Freud'],t:'Freud e o dinheiro: o que a teoria diz de verdade',e:'Separando o que circula nas redes do que está nos textos.',d:'2 out 2026'},
+ {c:'psicologia',g:['TCC'],t:'O que é a Terapia Cognitivo-Comportamental, em poucas palavras',e:'Pensamentos, emoções e comportamentos: a base da abordagem.',d:'25 set 2026'},
+ {c:'ciencias',g:['Neurociência','Memória'],t:'Memória e esquecimento: o que a neurociência já sabe',e:'Um panorama acessível sobre como lembramos e por que esquecemos.',d:'22 set 2026'},
+ {c:'psicologia',g:['Personalidade'],t:'Teorias da Personalidade: um mapa para iniciantes',e:'As grandes abordagens lado a lado, sem jargão.',d:'15 set 2026'}
+];
+let active='todos';
+const chips=document.getElementById('chips'), list=document.getElementById('list');
+function renderChips(){
+  chips.innerHTML='';
+  [['todos','Todos'],...Object.entries(cats).map(([k,v])=>[k,v[0]])].forEach(([k,l])=>{
+    const b=document.createElement('button');b.className='chip';b.type='button';b.textContent=l;
+    b.setAttribute('aria-pressed',k===active);b.onclick=()=>{active=k;renderChips();renderList()};chips.appendChild(b);
+  });
+}
+function renderList(){
+  list.innerHTML='';
+  posts.filter(p=>active==='todos'||p.c===active).forEach(p=>{
+    const r=document.createElement('article');r.className='row';
+    r.innerHTML=`<span class="cat" style="color:var(${cats[p.c][1]})">${cats[p.c][0]}</span><div><h3>${p.t}</h3><p>${p.e}</p><div class="tags">${p.g.map(x=>`<span class="tag">${x}</span>`).join('')}</div></div><span class="meta">${p.d}</span>`;
+    list.appendChild(r);
+  });
+}
+renderChips();renderList();
+document.getElementById('sub').addEventListener('submit',e=>{
+  e.preventDefault();const n=document.getElementById('note'),v=document.getElementById('email').value.trim();
+  n.hidden=false;
+  n.textContent=/^\S+@\S+\.\S+$/.test(v)?'Prévia: aqui a inscrição será ligada ao Substack quando o site for ao ar.':'Digite um e-mail válido, como nome@email.com.';
+});
+</script>
+</body>
+</html>
