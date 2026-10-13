@@ -74,6 +74,11 @@ section{padding-block:56px}
 .row{display:grid;grid-template-columns:130px 1fr auto;gap:20px;padding-block:22px;border-bottom:1px solid var(--line);align-items:baseline}
 .row > *{min-width:0}
 .row h3{font-size:1.1rem;font-weight:400;line-height:1.4}
+.empty{padding-block:40px;color:var(--muted)}
+.empty h3{color:var(--fg);font-size:1.2rem;font-weight:400}
+.empty p{margin:8px 0 0}
+.row h3 a{text-decoration:none}
+.row h3 a:hover,.row h3 a:focus-visible{text-decoration:underline;text-decoration-color:var(--accent)}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .tag{font-size:.75rem;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--bg)}
 .row p{margin:6px 0 0;color:var(--muted);font-size:.93rem}
@@ -84,6 +89,8 @@ section{padding-block:56px}
 .about{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start}
 @media (max-width:620px){.about{grid-template-columns:1fr;gap:20px}}
 .portrait{aspect-ratio:4/5;max-width:200px;border-radius:6px;background:linear-gradient(160deg,var(--c-psa),var(--c-teo));display:grid;place-items:center;color:var(--bg);font:300 3rem var(--serif)}
+.portrait{position:relative;overflow:hidden}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
 .about p{max-width:60ch;margin:0 0 14px}
 .about .social{display:flex;gap:18px;font-size:.9rem;color:var(--muted)}
 
@@ -114,40 +121,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <main>
   <div class="wrap hero" id="inicio">
     <div class="eyebrow">Psicologia · Teologia · Ciências</div>
-    <h1>Estudar em público, <em>escutar</em> com cuidado.</h1>
+    <h1>Leituras sobre a mente, a fé e o que nos faz <em>humanos</em>.</h1>
     <p>Artigos e reflexões de quem está no caminho da Psicologia: leituras, resumos e perguntas que ficam depois de fechar o livro.</p>
     <div class="actions">
       <a class="btn" href="#newsletter">Receber a newsletter</a>
       <a class="btn ghost" href="#artigos">Ler os artigos</a>
     </div>
   </div>
-
-  <hr class="divider">
-
-  <section class="wrap" aria-labelledby="dest">
-    <div class="sec-head"><h2 id="dest">Em destaque</h2><span class="eyebrow">Textos de exemplo</span></div>
-    <div class="featured">
-      <article class="feat big">
-        <span class="cat" style="color:var(--c-psi)">Psicologia</span>
-        <h3>Escutar-se é desconhecer-se: notas sobre O Palhaço e o Psicanalista</h3>
-        <p>O que muda quando a escuta de si deixa de ser confirmação e passa a ser estranhamento.</p>
-        <div class="tags"><span class="tag">Psicanálise</span><span class="tag">Escuta</span></div>
-        <span class="meta">13 out 2026 · 6 min</span>
-      </article>
-      <div class="side">
-        <article class="feat">
-          <span class="cat" style="color:var(--c-psi)">Psicologia</span>
-          <h3>A pirâmide de Maslow e o que ela não diz</h3>
-          <span class="meta">8 out 2026 · 5 min</span>
-        </article>
-        <article class="feat">
-          <span class="cat" style="color:var(--c-teo)">Teologia</span>
-          <h3>Fé e inconsciente: um diálogo possível?</h3>
-          <span class="meta">29 set 2026 · 8 min</span>
-        </article>
-      </div>
-    </div>
-  </section>
 
   <hr class="divider">
 
@@ -163,7 +143,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
   <section class="wrap" id="sobre" aria-labelledby="sob">
     <div class="about">
-      <div class="portrait" aria-hidden="true">DS</div>
+      <div class="portrait"><img src="foto.jpg" alt="Foto de Diego Santana" onerror="this.remove()"><span aria-hidden="true">DS</span></div>
       <div>
         <div class="eyebrow">Sobre</div>
         <h2 id="sob" style="font-size:1.6rem;font-weight:400;margin:8px 0 16px">Olá, eu sou o Diego.</h2>
@@ -191,15 +171,28 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <script>
 const cats={psicologia:['Psicologia','--c-psi'],teologia:['Teologia','--c-teo'],ciencias:['Ciências','--c-cie']};
-const posts=[
- {c:'psicologia',g:['Psicanálise','Escuta'],t:'Escutar-se é desconhecer-se: notas sobre O Palhaço e o Psicanalista',e:'Primeiras impressões do livro de Christian Dunker e Cláudio Thebas.',d:'13 out 2026'},
- {c:'psicologia',g:['Humanismo','Motivação'],t:'A pirâmide de Maslow e o que ela não diz',e:'Necessidades humanas, críticas à hierarquia e usos na prática.',d:'8 out 2026'},
- {c:'teologia',g:['Psicanálise'],t:'Fé e inconsciente: um diálogo possível?',e:'Como psicanálise e teologia podem conversar sem reduzir uma à outra.',d:'29 set 2026'},
- {c:'psicologia',g:['Psicanálise','Freud'],t:'Freud e o dinheiro: o que a teoria diz de verdade',e:'Separando o que circula nas redes do que está nos textos.',d:'2 out 2026'},
- {c:'psicologia',g:['TCC'],t:'O que é a Terapia Cognitivo-Comportamental, em poucas palavras',e:'Pensamentos, emoções e comportamentos: a base da abordagem.',d:'25 set 2026'},
- {c:'ciencias',g:['Neurociência','Memória'],t:'Memória e esquecimento: o que a neurociência já sabe',e:'Um panorama acessível sobre como lembramos e por que esquecemos.',d:'22 set 2026'},
- {c:'psicologia',g:['Personalidade'],t:'Teorias da Personalidade: um mapa para iniciantes',e:'As grandes abordagens lado a lado, sem jargão.',d:'15 set 2026'}
-];
+/* Os posts vêm automaticamente do Substack (via /api/posts).
+   Categoria: tag "Teologia" ou "Ciências" no Substack; sem essas tags, o post entra em Psicologia.
+   As demais tags (Psicanálise, TCC...) aparecem como etiquetas. */
+let posts=[], state='loading';
+const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
+const fmt=d=>{const x=new Date(d);return isNaN(x)?'':x.toLocaleDateString('pt-BR',{day:'numeric',month:'short',year:'numeric'}).replace('.','')};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function toPost(p){
+  const t=(p.tags||[]);
+  let c='psicologia';
+  if(t.some(x=>norm(x)==='teologia'))c='teologia';
+  else if(t.some(x=>norm(x)==='ciencias'))c='ciencias';
+  const g=t.filter(x=>!['psicologia','teologia','ciencias'].includes(norm(x)));
+  return {c,g,t:p.title,e:p.excerpt||'',d:fmt(p.date),u:p.link};
+}
+async function load(){
+  try{
+    const r=await fetch('/api/posts');const j=await r.json();
+    posts=(j.posts||[]).map(toPost);state=j.error&&!posts.length?'error':'ok';
+  }catch(e){state='error'}
+  renderList();
+}
 let active='todos';
 const chips=document.getElementById('chips'), list=document.getElementById('list');
 function renderChips(){
@@ -211,13 +204,21 @@ function renderChips(){
 }
 function renderList(){
   list.innerHTML='';
-  posts.filter(p=>active==='todos'||p.c===active).forEach(p=>{
+  if(state==='loading'){list.innerHTML='<div class="empty"><p>Carregando textos…</p></div>';return}
+  const shown=posts.filter(p=>active==='todos'||p.c===active);
+  if(!shown.length){
+    list.innerHTML=state==='error'
+      ?`<div class="empty"><h3>Não foi possível carregar os textos agora.</h3><p>Leia direto no <a href="https://santanadipsi.substack.com" target="_blank" rel="noopener">Substack</a>.</p></div>`
+      :`<div class="empty"><h3>${posts.length?'Nenhum texto nesta categoria ainda.':'Primeiros textos em breve.'}</h3><p>Enquanto isso, <a href="#newsletter">inscreva-se na newsletter</a> para receber as próximas edições.</p></div>`;
+    return;
+  }
+  shown.forEach(p=>{
     const r=document.createElement('article');r.className='row';
-    r.innerHTML=`<span class="cat" style="color:var(${cats[p.c][1]})">${cats[p.c][0]}</span><div><h3>${p.t}</h3><p>${p.e}</p><div class="tags">${p.g.map(x=>`<span class="tag">${x}</span>`).join('')}</div></div><span class="meta">${p.d}</span>`;
+    r.innerHTML=`<span class="cat" style="color:var(${cats[p.c][1]})">${cats[p.c][0]}</span><div><h3><a href="${esc(p.u)}" target="_blank" rel="noopener">${esc(p.t)}</a></h3><p>${esc(p.e)}</p><div class="tags">${p.g.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div></div><span class="meta">${esc(p.d)}</span>`;
     list.appendChild(r);
   });
 }
-renderChips();renderList();
+renderChips();renderList();load();
 </script>
 </body>
 </html>
