@@ -1,15 +1,3 @@
-Achei o problema. O repositório está certo: a pasta `api` existe, o index.html e a foto são as versões mais recentes. Mas o **posts.js está vazio**, provavelmente o conteúdo não foi colado antes do commit.
-
-Para corrigir:
-
-1. No GitHub, abra **api → posts.js**.
-2. Clique no ícone de lápis (**Edit this file**), no canto direito.
-3. Apague o que estiver lá, cole o código abaixo e clique em **Commit changes**.
-
-```js
-// Lê o feed do Substack e devolve a lista de posts em JSON para o site.
-const FEED_URL = 'https://santanadipsi.substack.com/feed';
-
 function decode(s = '') {
   return s
     .replace(/^<!\[CDATA\[/, '').replace(/\]\]>$/, '')
@@ -54,4 +42,4 @@ module.exports = async (req, res) => {
     res.status(200).json({ posts: [], error: 'Não foi possível ler o feed agora.' });
   }
 };
-```
+
