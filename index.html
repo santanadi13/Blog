@@ -179,12 +179,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div class="eyebrow">Newsletter</div>
       <h2 id="nl">Uma carta de estudos, a cada quinze dias.</h2>
       <p>Um texto por edição sobre o que li e estudei, com as referências para você ir mais fundo.</p>
-      <form class="sub" id="sub" novalidate>
-        <label for="email" class="eyebrow" style="position:absolute;left:-9999px">E-mail</label>
-        <input id="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
-        <button class="btn" type="submit">Inscrever</button>
-      </form>
-      <div class="note" id="note" hidden></div>
+      <iframe src="https://santanadipsi.substack.com/embed" title="Inscrição na newsletter" width="100%" height="320" style="border:1px solid var(--line);border-radius:6px;background:#fff;max-width:520px;width:100%" frameborder="0" scrolling="no" loading="lazy"></iframe>
+      <p style="font-size:.85rem">Se o formulário não aparecer, <a href="https://santanadipsi.substack.com" target="_blank" rel="noopener">inscreva-se direto no Substack</a>.</p>
     </div>
   </section>
 </main>
@@ -222,11 +218,6 @@ function renderList(){
   });
 }
 renderChips();renderList();
-document.getElementById('sub').addEventListener('submit',e=>{
-  e.preventDefault();const n=document.getElementById('note'),v=document.getElementById('email').value.trim();
-  n.hidden=false;
-  n.textContent=/^\S+@\S+\.\S+$/.test(v)?'Prévia: aqui a inscrição será ligada ao Substack quando o site for ao ar.':'Digite um e-mail válido, como nome@email.com.';
-});
 </script>
 </body>
 </html>
