@@ -1,5 +1,6 @@
 // Lê o feed do Substack e devolve a lista de posts em JSON para o site.
 const FEED_URL = 'https://santanadipsi.substack.com/feed';
+
 function decode(s = '') {
   return s
     .replace(/^<!\[CDATA\[/, '').replace(/\]\]>$/, '')
