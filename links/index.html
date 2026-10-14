@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Links de Diego Santana: blog, newsletter e textos sobre Psicologia, Teologia e Ciências.">
+<title>Diego Santana · Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,400&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#f6f3ee; --surface:#fffdf9; --fg:#2a2622; --muted:#6f665c; --line:#e2dbd0;
+  --accent:#8a5a2b; --c-psi:#4f5b66; --c-psa:#9a5f22; --c-teo:#3f4a8a; --c-cie:#2f6b55;
+  --serif:'Merriweather',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#1b1916; --surface:#24211d; --fg:#ece6dc; --muted:#a69b8d; --line:#3a352e;
+  --accent:#d39a5e; --c-psi:#9fb0bf; --c-psa:#e0a463; --c-teo:#9ea8e8; --c-cie:#7cc4a6; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.55;min-height:100vh;
+  padding:max(48px,env(safe-area-inset-top)) 20px max(40px,env(safe-area-inset-bottom))}
+main{max-width:440px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:28px}
+.photo{width:112px;height:112px;border-radius:50%;overflow:hidden;position:relative;
+  background:linear-gradient(160deg,var(--c-psa),var(--c-teo));display:grid;place-items:center;
+  color:var(--bg);font:300 2rem var(--serif);box-shadow:0 0 0 4px var(--bg),0 0 0 5px var(--line)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 32%}
+.who{text-align:center;display:grid;gap:6px}
+h1{font:400 1.5rem var(--serif);margin:0}
+.who p{margin:0;color:var(--muted);font-size:.95rem;max-width:34ch}
+.areas{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.links{width:100%;display:grid;gap:12px}
+.link{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+  padding:16px 20px;border:1px solid var(--line);border-radius:14px;background:var(--surface);
+  color:var(--fg);text-decoration:none;font-weight:500}
+.link small{display:block;font-weight:400;color:var(--muted);font-size:.82rem;margin-top:2px}
+.link span{min-width:0}
+.link .arrow{color:var(--accent);flex:none;font-size:1.1rem}
+.link.main{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.link.main small{color:var(--bg);opacity:.75}
+.link.main .arrow{color:var(--bg)}
+.link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.latest{width:100%}
+.latest .label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--muted);margin:0 0 8px 4px}
+.latest .link{font-family:var(--serif);font-weight:400}
+.rule{width:64px;height:2px;border:0;margin:0;background:linear-gradient(90deg,var(--c-psi),var(--c-psa),var(--c-teo),var(--c-cie));opacity:.6}
+footer{font-size:.78rem;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){
+  .link{transition:transform .15s ease,border-color .15s ease}
+  .link:hover{transform:translateY(-2px);border-color:var(--accent)}
+}
+</style>
+</head>
+<body>
+<main>
+  <div class="photo"><img src="/foto.jpg" alt="Foto de Diego Santana" onerror="this.remove()"><span aria-hidden="true">DS</span></div>
+
+  <div class="who">
+    <h1>Diego Santana</h1>
+    <div class="areas">Psicologia · Teologia · Ciências</div>
+    <p>Saxofonista e estudante de Psicologia em São Paulo. Escrevo sobre o que leio e estudo.</p>
+  </div>
+
+  <hr class="rule">
+
+  <div class="latest" id="latest" hidden>
+    <p class="label">Texto mais recente</p>
+    <a class="link" id="latest-link" href="#" target="_blank" rel="noopener"><span id="latest-title"></span><span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+
+  <nav class="links" aria-label="Links">
+    <a class="link main" href="https://santanadipsi.substack.com" target="_blank" rel="noopener">
+      <span>Receber a newsletter<small>Uma carta de estudos a cada quinze dias</small></span><span class="arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="link" href="/">
+      <span>Blog<small>Todos os artigos e reflexões</small></span><span class="arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="link" href="/#sobre">
+      <span>Sobre mim</span><span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+
+  <footer>@santanadi_psi</footer>
+</main>
+<script>
+fetch('/api/posts').then(r=>r.json()).then(j=>{
+  const p=(j.posts||[])[0]; if(!p||!p.link)return;
+  document.getElementById('latest-title').textContent=p.title;
+  document.getElementById('latest-link').href=p.link;
+  document.getElementById('latest').hidden=false;
+}).catch(()=>{});
+</script>
+</body>
+</html>
